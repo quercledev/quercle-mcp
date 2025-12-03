@@ -7,7 +7,7 @@ import { QuercleClient } from "../client.js";
 import { QuercleError } from "../types.js";
 
 export const fetchSchema = z.object({
-  url: z.string().url().describe("The URL to fetch and analyze"),
+  url: z.url().describe("The URL to fetch and analyze"),
   prompt: z
     .string()
     .min(1)

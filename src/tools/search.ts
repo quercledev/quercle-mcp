@@ -15,13 +15,13 @@ export const searchSchema = z.object({
     .array(z.string())
     .optional()
     .describe(
-      "Only include results from these domains (e.g., ['*.edu', '*.gov', 'wikipedia.org'])"
+      "Only include results from these domains (e.g., ['example.com', '*.example.org'])"
     ),
   blocked_domains: z
     .array(z.string())
     .optional()
     .describe(
-      "Exclude results from these domains (e.g., ['pinterest.com', 'quora.com'])"
+      "Exclude results from these domains (e.g., ['example.com', '*.example.org'])"
     ),
 });
 
