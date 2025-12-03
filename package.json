@@ -16,8 +16,8 @@
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm run lint && npm run format:check",
-    "prepublishOnly": "npm run check && npm run build"
+    "check": "bun run typecheck && bun run lint && bun run format:check",
+    "prepublishOnly": "bun run check && bun run build"
   },
   "keywords": [
     "mcp",

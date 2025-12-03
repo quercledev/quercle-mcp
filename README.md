@@ -151,28 +151,28 @@ git clone https://github.com/quercle/quercle-mcp.git
 cd quercle-mcp
 
 # Install dependencies
-npm install
+bun install
 
 # Run all checks (typecheck, lint, format)
-npm run check
+bun run check
 
 # Build
-npm run build
+bun run build
 
 # Run locally
-QUERCLE_API_KEY=your-key node dist/index.js
+QUERCLE_API_KEY=your-key bun run start
 ```
 
 ### Available Scripts
 
 | Script | Description |
 |--------|-------------|
-| `npm run build` | Compile TypeScript to JavaScript |
-| `npm run check` | Run all checks (typecheck + lint + format) |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Run ESLint with auto-fix |
-| `npm run format` | Format code with Prettier |
-| `npm run typecheck` | Run TypeScript type checking |
+| `bun run build` | Compile TypeScript to JavaScript |
+| `bun run check` | Run all checks (typecheck + lint + format) |
+| `bun run lint` | Run ESLint |
+| `bun run lint:fix` | Run ESLint with auto-fix |
+| `bun run format` | Format code with Prettier |
+| `bun run typecheck` | Run TypeScript type checking |
 
 ## License
 
