@@ -1,0 +1,62 @@
+{
+  "name": "quercle-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Quercle - AI-powered web fetching and search",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "quercle-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write src/",
+    "format:check": "prettier --check src/",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run lint && npm run format:check",
+    "prepublishOnly": "npm run check && npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "quercle",
+    "ai",
+    "web-search",
+    "web-fetch",
+    "claude",
+    "model-context-protocol"
+  ],
+  "author": "Quercle",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quercle/quercle-mcp"
+  },
+  "homepage": "https://quercle.dev",
+  "bugs": {
+    "url": "https://github.com/quercle/quercle-mcp/issues"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "fastmcp": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.7.4",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.48.1"
+  }
+}
