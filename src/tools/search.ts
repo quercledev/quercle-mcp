@@ -10,6 +10,7 @@ export const searchSchema = z.object({
   query: z
     .string()
     .min(1)
+    .max(1000)
     .describe("The search query to find information about"),
   allowed_domains: z
     .array(z.string())
@@ -38,7 +39,7 @@ export async function executeSearch(
     });
   } catch (error) {
     if (error instanceof QuercleError) {
-      throw new Error(error.message);
+      throw new Error(`[${error.statusCode}] ${error.message}`);
     }
     throw error;
   }

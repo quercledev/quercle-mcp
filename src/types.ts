@@ -2,14 +2,20 @@
  * Quercle API response and request types
  */
 
-// API Response Types
-export interface FetchResponse {
-  result: string;
-}
+import { z } from "zod";
 
-export interface SearchResponse {
-  result: string;
-}
+// API Response Schemas (for runtime validation)
+export const FetchResponseSchema = z.object({
+  result: z.string(),
+});
+
+export const SearchResponseSchema = z.object({
+  result: z.string(),
+});
+
+// API Response Types (inferred from schemas)
+export type FetchResponse = z.infer<typeof FetchResponseSchema>;
+export type SearchResponse = z.infer<typeof SearchResponseSchema>;
 
 export interface ErrorResponse {
   detail: string;

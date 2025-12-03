@@ -11,6 +11,7 @@ export const fetchSchema = z.object({
   prompt: z
     .string()
     .min(1)
+    .max(10000)
     .describe("Instructions for how to analyze the page content"),
 });
 
@@ -24,7 +25,7 @@ export async function executeFetch(
     return await client.fetch(input.url, input.prompt);
   } catch (error) {
     if (error instanceof QuercleError) {
-      throw new Error(error.message);
+      throw new Error(`[${error.statusCode}] ${error.message}`);
     }
     throw error;
   }

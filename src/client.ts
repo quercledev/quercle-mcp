@@ -4,8 +4,8 @@
 
 import {
   QuercleConfig,
-  FetchResponse,
-  SearchResponse,
+  FetchResponseSchema,
+  SearchResponseSchema,
   ErrorResponse,
   QuercleError,
 } from "./types.js";
@@ -19,13 +19,14 @@ export class QuercleClient {
   private timeout: number;
 
   constructor(config: QuercleConfig) {
-    if (!config.apiKey) {
+    const apiKey = config.apiKey.trim();
+    if (!apiKey) {
       throw new QuercleError(
         "API key is required. Get one at https://quercle.dev",
         401
       );
     }
-    this.apiKey = config.apiKey;
+    this.apiKey = apiKey;
     this.baseUrl = (config.baseUrl || DEFAULT_BASE_URL).replace(/\/$/, "");
     this.timeout = config.timeout || DEFAULT_TIMEOUT;
   }
@@ -34,11 +35,15 @@ export class QuercleClient {
    * Fetch and analyze content from a URL using AI
    */
   async fetch(url: string, prompt: string): Promise<string> {
-    const response = await this.request<FetchResponse>("/api/v1/fetch", {
+    const data = await this.request("/api/v1/fetch", {
       url,
       prompt,
     });
-    return response.result;
+    const response = FetchResponseSchema.safeParse(data);
+    if (!response.success) {
+      throw new QuercleError("Invalid response from API", 500);
+    }
+    return response.data.result;
   }
 
   /**
@@ -60,17 +65,21 @@ export class QuercleClient {
       body.blocked_domains = options.blocked_domains;
     }
 
-    const response = await this.request<SearchResponse>("/api/v1/search", body);
-    return response.result;
+    const data = await this.request("/api/v1/search", body);
+    const response = SearchResponseSchema.safeParse(data);
+    if (!response.success) {
+      throw new QuercleError("Invalid response from API", 500);
+    }
+    return response.data.result;
   }
 
   /**
    * Make a request to the Quercle API
    */
-  private async request<T>(
+  private async request(
     endpoint: string,
     body: Record<string, unknown>
-  ): Promise<T> {
+  ): Promise<unknown> {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => {
       controller.abort();
@@ -93,7 +102,7 @@ export class QuercleClient {
         await this.handleError(response);
       }
 
-      return (await response.json()) as T;
+      return await response.json();
     } catch (error) {
       clearTimeout(timeoutId);
 
@@ -126,7 +135,13 @@ export class QuercleClient {
       errorDetail = errorBody.detail || "";
 
       if (errorBody.errors && errorBody.errors.length > 0) {
-        errorDetail += " " + errorBody.errors.map((e) => e.message).join(", ");
+        const messages = errorBody.errors
+          .map((e) => e.message)
+          .filter(Boolean)
+          .join(", ");
+        if (messages) {
+          errorDetail += " " + messages;
+        }
       }
     } catch {
       errorDetail = response.statusText;
@@ -179,7 +194,7 @@ export class QuercleClient {
  * Create a Quercle client from environment variables
  */
 export function createClientFromEnv(): QuercleClient {
-  const apiKey = process.env.QUERCLE_API_KEY;
+  const apiKey = process.env.QUERCLE_API_KEY?.trim();
   const baseUrl = process.env.QUERCLE_BASE_URL;
 
   if (!apiKey) {
