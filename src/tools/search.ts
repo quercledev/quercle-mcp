@@ -11,7 +11,7 @@ export const searchSchema = z.object({
     .string()
     .min(1)
     .max(1000)
-    .describe("The search query to find information about"),
+    .describe("The search query to find information about. Be specific"),
   allowed_domains: z
     .array(z.string())
     .optional()
@@ -48,6 +48,6 @@ export async function executeSearch(
 export const searchToolDefinition = {
   name: "search",
   description:
-    "Search the web and get an AI-synthesized answer with citations. The response includes the answer and numbered source references. Optionally filter by allowed or blocked domains.",
+    "Search the web and get an AI-synthesized answer with citations. The response includes the answer and source URLs that can be fetched for further investigation. Optionally filter by allowed or blocked domains.",
   parameters: searchSchema,
 };

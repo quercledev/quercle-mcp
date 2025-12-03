@@ -12,7 +12,9 @@ export const fetchSchema = z.object({
     .string()
     .min(1)
     .max(10000)
-    .describe("Instructions for how to analyze the page content"),
+    .describe(
+      "Instructions for how to analyze the page content. Be specific about what information you want to extract"
+    ),
 });
 
 export type FetchInput = z.infer<typeof fetchSchema>;
@@ -34,6 +36,6 @@ export async function executeFetch(
 export const fetchToolDefinition = {
   name: "fetch",
   description:
-    "Fetch a web page and analyze its content using AI. Provide a URL and a prompt describing what information you want to extract or how to analyze the content.",
+    "Fetch a web page and analyze its content using AI. Provide a URL and a prompt describing what information you want to extract or how to analyze the content. The raw HTML is NOT returned - only the AI's analysis based on your prompt.",
   parameters: fetchSchema,
 };
