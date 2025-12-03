@@ -147,7 +147,7 @@ For complex queries or large pages, the request may time out. Try:
 
 ```bash
 # Clone the repository
-git clone https://github.com/quercle/quercle-mcp.git
+git clone https://github.com/quercledev/quercle-mcp.git
 cd quercle-mcp
 
 # Install dependencies
@@ -181,6 +181,6 @@ MIT - see [LICENSE](LICENSE) for details.
 ## Links
 
 - [Quercle Website](https://quercle.dev)
-- [GitHub Repository](https://github.com/quercle/quercle-mcp)
+- [GitHub Repository](https://github.com/quercledev/quercle-mcp)
 - [npm Package](https://www.npmjs.com/package/quercle-mcp)
 - [MCP Documentation](https://modelcontextprotocol.io)

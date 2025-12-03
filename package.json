@@ -32,11 +32,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/quercle/quercle-mcp"
+    "url": "https://github.com/quercledev/quercle-mcp"
   },
   "homepage": "https://quercle.dev",
   "bugs": {
-    "url": "https://github.com/quercle/quercle-mcp/issues"
+    "url": "https://github.com/quercledev/quercle-mcp/issues"
   },
   "files": [
     "dist",
