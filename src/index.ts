@@ -59,8 +59,8 @@ server.addTool({
   execute: async (args) => {
     try {
       return await client.search(args.query, {
-        allowedDomains: args.allowed_domains,
-        blockedDomains: args.blocked_domains,
+        allowedDomains: args.allowedDomains,
+        blockedDomains: args.blockedDomains,
       });
     } catch (error) {
       if (error instanceof QuercleError) {
