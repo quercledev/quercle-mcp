@@ -1,6 +1,6 @@
 {
-  "name": "quercle-mcp",
-  "version": "1.0.3",
+  "name": "@quercle/mcp",
+  "version": "2.0.0",
   "description": "MCP server for Quercle - AI-powered web fetching and search",
   "type": "module",
   "main": "dist/index.js",
@@ -47,8 +47,8 @@
     "node": ">=18"
   },
   "dependencies": {
-    "fastmcp": "^3.24.0",
-    "zod": "^4.1.13"
+    "@quercle/sdk": "^0.2.0",
+    "fastmcp": "^3.24.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

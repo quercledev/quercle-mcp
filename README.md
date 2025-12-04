@@ -1,6 +1,6 @@
-# Quercle MCP
+# @quercle/mcp
 
-[![npm version](https://badge.fury.io/js/quercle-mcp.svg)](https://www.npmjs.com/package/quercle-mcp)
+[![npm version](https://badge.fury.io/js/@quercle/mcp.svg)](https://www.npmjs.com/package/@quercle/mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 An MCP (Model Context Protocol) server for [Quercle](https://quercle.dev) - AI-powered web fetching and search.
@@ -28,7 +28,7 @@ Add to your Claude Desktop configuration file:
   "mcpServers": {
     "quercle": {
       "command": "npx",
-      "args": ["-y", "quercle-mcp"],
+      "args": ["-y", "@quercle/mcp"],
       "env": {
         "QUERCLE_API_KEY": "your-api-key-here"
       }
@@ -88,7 +88,7 @@ Add to `~/.claude/settings.json`:
   "mcpServers": {
     "quercle": {
       "command": "npx",
-      "args": ["-y", "quercle-mcp"],
+      "args": ["-y", "@quercle/mcp"],
       "env": {
         "QUERCLE_API_KEY": "your-api-key-here"
       }
@@ -102,7 +102,7 @@ Add to `~/.claude/settings.json`:
 If you prefer to install globally:
 
 ```bash
-npm install -g quercle-mcp
+npm install -g @quercle/mcp
 ```
 
 Then update your configuration to use `quercle-mcp` directly:
@@ -182,5 +182,5 @@ MIT - see [LICENSE](LICENSE) for details.
 
 - [Quercle Website](https://quercle.dev)
 - [GitHub Repository](https://github.com/quercledev/quercle-mcp)
-- [npm Package](https://www.npmjs.com/package/quercle-mcp)
+- [npm Package](https://www.npmjs.com/package/@quercle/mcp)
 - [MCP Documentation](https://modelcontextprotocol.io)

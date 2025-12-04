@@ -15,18 +15,13 @@ This is an MCP (Model Context Protocol) server that wraps the Quercle API, provi
 
 ```
 src/
-├── index.ts          # MCP server entry point (FastMCP)
-├── client.ts         # Quercle API client (HTTP requests)
-├── types.ts          # TypeScript type definitions
-└── tools/
-    ├── fetch.ts      # Fetch tool (Zod schema + executor)
-    └── search.ts     # Search tool (Zod schema + executor)
+└── index.ts          # MCP server entry point (FastMCP + @quercle/sdk)
 ```
 
 ### Key Dependencies
 
+- `@quercle/sdk` - Quercle API client and tool schemas
 - `fastmcp` - MCP server framework
-- `zod` - Schema validation for tool parameters
 
 ## Commands
 
@@ -73,12 +68,12 @@ Both endpoints require `X-API-Key` header authentication.
 
 ## Error Handling
 
-The client maps HTTP status codes to user-friendly messages:
+Error handling is provided by `@quercle/sdk` which maps HTTP status codes to user-friendly messages:
 
-- 401 → Invalid API key
-- 402 → Insufficient credits
-- 400 → Validation error (with details)
-- 504 → Timeout
+- 401 → Invalid API key (AuthenticationError)
+- 402 → Insufficient credits (InsufficientCreditsError)
+- 400 → Validation error (QuercleError)
+- 504 → Timeout (TimeoutError)
 
 ## Testing
 
