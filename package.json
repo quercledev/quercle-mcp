@@ -50,7 +50,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@quercle/sdk": "^0.2.1",
+    "@quercle/sdk": "^0.2.2",
     "fastmcp": "^3.24.0"
   },
   "devDependencies": {
