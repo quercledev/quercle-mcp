@@ -48,7 +48,6 @@ Restart Claude Desktop to load the new MCP server.
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
 | `QUERCLE_API_KEY` | Yes | - | Your Quercle API key from [quercle.dev](https://quercle.dev) |
-| `QUERCLE_BASE_URL` | No | `https://quercle.dev` | API base URL (for self-hosted instances) |
 
 ## Tools
 

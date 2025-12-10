@@ -55,7 +55,6 @@ The server reads these environment variables at startup:
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
 | `QUERCLE_API_KEY` | Yes | - | API key from quercle.dev |
-| `QUERCLE_BASE_URL` | No | `https://quercle.dev` | API base URL |
 
 ## API Integration
 
