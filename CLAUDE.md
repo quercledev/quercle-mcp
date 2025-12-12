@@ -60,8 +60,8 @@ The server reads these environment variables at startup:
 
 This MCP server calls the Quercle API:
 
-- `POST /api/v1/fetch` - Fetch and analyze a URL
-- `POST /api/v1/search` - Search the web with AI synthesis
+- `POST /v1/fetch` - Fetch and analyze a URL
+- `POST /v1/search` - Search the web with AI synthesis
 
 Both endpoints require `X-API-Key` header authentication.
 
