@@ -1,6 +1,6 @@
 {
   "name": "@quercle/mcp",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "MCP server for Quercle - AI-powered web fetching and search",
   "type": "module",
   "main": "dist/index.js",
