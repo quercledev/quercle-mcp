@@ -69,7 +69,7 @@ This MCP server calls the Quercle API via `@quercle/sdk` (`QuercleClient`):
 - `POST /v1/raw-search` - Search and return raw results (markdown/JSON)
 - `POST /v1/extract` - Extract structured data from a URL
 
-All endpoints require `X-API-Key` header authentication.
+All endpoints require `Authorization: Bearer <key>` header authentication.
 
 ## Error Handling
 
