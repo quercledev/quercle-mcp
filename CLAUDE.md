@@ -8,8 +8,11 @@ This is an MCP (Model Context Protocol) server that wraps the Quercle API, provi
 
 ### What It Does
 
-- **fetch tool**: Fetches a URL and analyzes its content using AI based on a user prompt
-- **search tool**: Searches the web and returns AI-synthesized answers with citations
+- **fetch**: Fetches a URL and analyzes its content using AI based on a user prompt
+- **search**: Searches the web and returns AI-synthesized answers with citations
+- **raw_fetch**: Fetches a URL and returns raw content (markdown or HTML) without AI processing
+- **raw_search**: Searches the web and returns raw results (markdown or JSON) without AI synthesis
+- **extract**: Fetches a URL and extracts structured data matching a query (markdown or JSON)
 
 ### Architecture
 
@@ -58,21 +61,26 @@ The server reads these environment variables at startup:
 
 ## API Integration
 
-This MCP server calls the Quercle API:
+This MCP server calls the Quercle API via `@quercle/sdk` (`QuercleClient`):
 
-- `POST /v1/fetch` - Fetch and analyze a URL
+- `POST /v1/fetch` - Fetch and analyze a URL with AI
 - `POST /v1/search` - Search the web with AI synthesis
+- `POST /v1/raw-fetch` - Fetch raw page content (markdown/HTML)
+- `POST /v1/raw-search` - Search and return raw results (markdown/JSON)
+- `POST /v1/extract` - Extract structured data from a URL
 
-Both endpoints require `X-API-Key` header authentication.
+All endpoints require `X-API-Key` header authentication.
 
 ## Error Handling
 
-Error handling is provided by `@quercle/sdk` which maps HTTP status codes to user-friendly messages:
+All tool handlers catch `QuercleApiError` from `@quercle/sdk` and re-throw with the status code and message. The SDK maps HTTP errors to `QuercleApiError` with `statusCode` and `message` fields:
 
-- 401 → Invalid API key (AuthenticationError)
-- 402 → Insufficient credits (InsufficientCreditsError)
-- 400 → Validation error (QuercleError)
-- 504 → Timeout (TimeoutError)
+- 401 → Invalid API key
+- 402 → Insufficient credits
+- 400 → Validation error
+- 504 → Timeout
+
+The `raw_fetch`, `raw_search`, and `extract` tools also check the `unsafe` flag and prefix results with `[UNSAFE]` when the safeguard triggers.
 
 ## Testing
 
